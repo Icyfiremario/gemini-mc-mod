@@ -1,5 +1,6 @@
 package com.gmail.icyfiremario797.geminichad;
 
+import com.gmail.icyfiremario797.geminichad.common.command.ResetChad;
 import com.gmail.icyfiremario797.geminichad.common.command.TellChad;
 import com.mojang.brigadier.CommandDispatcher;
 import com.mojang.logging.LogUtils;
@@ -79,6 +80,7 @@ public class Geminichad {
             CommandDispatcher<CommandSourceStack> dispatcher = event.getDispatcher();
 
             TellChad.register(dispatcher);
+            ResetChad.register(dispatcher);
         }
     }
 }

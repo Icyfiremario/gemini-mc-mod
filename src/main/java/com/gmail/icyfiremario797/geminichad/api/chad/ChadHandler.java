@@ -1,7 +1,7 @@
-package com.gmail.icyfiremario797.geminichad.api;
+package com.gmail.icyfiremario797.geminichad.api.chad;
 
 
-import org.json.JSONObject;
+import com.google.gson.Gson;
 
 import java.io.IOException;
 import java.net.URI;
@@ -10,8 +10,9 @@ import java.net.http.HttpRequest;
 import java.net.http.HttpResponse;
 
 public class ChadHandler {
-    private static HttpClient client = HttpClient.newHttpClient();
-    private static String testString = "{\"message\": \"TEST\"}";
+    private static final HttpClient client = HttpClient.newHttpClient();
+    private static final String testString = "{\"message\": \"TEST\"}";
+    private static final Gson gson = new Gson();
 
     public static String sendMessage(String message) throws IOException, InterruptedException {
         HttpRequest request = HttpRequest.newBuilder()
@@ -25,11 +26,8 @@ public class ChadHandler {
         System.out.println("HTTP Response Code: " + response.statusCode());
         System.out.println("Response from server: " + response.body());
 
-        JSONObject jsonResponse = new JSONObject(response.body());
+        ChadResponse chadResponse = gson.fromJson(response.body(), ChadResponse.class);
 
-        String chadResponse = jsonResponse.getString("response");
-        System.out.println("Chad's response: " + chadResponse);
-
-        return chadResponse;
+        return chadResponse.getResponse();
     }
 }

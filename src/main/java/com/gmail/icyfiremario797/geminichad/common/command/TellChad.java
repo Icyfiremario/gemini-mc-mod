@@ -1,6 +1,6 @@
 package com.gmail.icyfiremario797.geminichad.common.command;
 
-import com.gmail.icyfiremario797.geminichad.api.ChadHandler;
+import com.gmail.icyfiremario797.geminichad.api.chad.ChadHandler;
 import com.mojang.brigadier.Command;
 import com.mojang.brigadier.CommandDispatcher;
 import com.mojang.brigadier.arguments.StringArgumentType;
@@ -8,6 +8,8 @@ import net.minecraft.commands.CommandSourceStack;
 import net.minecraft.commands.Commands;
 import net.minecraft.network.chat.Component;
 import net.minecraft.world.entity.player.Player;
+
+import java.util.Objects;
 
 public class TellChad {
     public static void register(CommandDispatcher<CommandSourceStack> dispatcher) {
@@ -20,7 +22,12 @@ public class TellChad {
                 String response = ChadHandler.sendMessage("test");
                 player.sendSystemMessage(Component.literal(response));
             } catch (Exception e) {
-                e.printStackTrace();
+                if (Objects.equals(e.toString(), "java.net.ConnectException")) {
+                    player.sendSystemMessage(Component.literal("Server not found!"));
+                }
+                else {
+                    player.sendSystemMessage(Component.literal(e.toString()));
+                }
             }
 
             //player.sendSystemMessage(Component.literal(msg));

@@ -19,8 +19,9 @@ public class TellChad {
     private static int execute(CommandSourceStack command, String msg) {
         if (command.getEntity() instanceof Player player) {
             try {
-                String response = ChadHandler.sendMessage("test");
-                player.sendSystemMessage(Component.literal(response));
+                String response = ChadHandler.sendMessage(msg);
+                player.sendSystemMessage(Component.literal(String.format("User: %s", msg)));
+                player.sendSystemMessage(Component.literal(String.format("Chad: %s", response)));
             } catch (Exception e) {
                 if (Objects.equals(e.toString(), "java.net.ConnectException")) {
                     player.sendSystemMessage(Component.literal("Server not found!"));

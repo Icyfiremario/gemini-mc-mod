@@ -19,7 +19,7 @@ public class ConfigGUI {
         ConfigEntryBuilder entryBuilder = builder.entryBuilder();
 
         general.addEntry(entryBuilder.startStrField(Component.literal("Chad Server URL"), GeminichadConfig.CHAD_SERVER_URL.get())
-                .setDefaultValue("http://127.0.0.1:5000")
+                .setDefaultValue("https://gemini-mc-server.onrender.com/")
                 .setSaveConsumer(newValue -> GeminichadConfig.CHAD_SERVER_URL.set(newValue))
                 .build());
 

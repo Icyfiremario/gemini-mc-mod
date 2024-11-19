@@ -11,7 +11,7 @@ public final class GeminichadConfig {
     static {
         BUILDER.push("Gemini Chad Client Config");
 
-        CHAD_SERVER_URL = BUILDER.comment("This is a string").define("Chad Server URL", "http://127.0.0.1:5000");
+        CHAD_SERVER_URL = BUILDER.comment("This is a string").define("Chad Server URL", "https://gemini-mc-server.onrender.com/");
 
         BUILDER.pop();
         SPEC = BUILDER.build();

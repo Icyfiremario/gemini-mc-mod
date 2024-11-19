@@ -2,6 +2,7 @@ package com.gmail.icyfiremario797.geminichad;
 
 import com.gmail.icyfiremario797.geminichad.common.command.ResetChad;
 import com.gmail.icyfiremario797.geminichad.common.command.TellChad;
+import com.gmail.icyfiremario797.geminichad.config.GeminichadConfig;
 import com.mojang.brigadier.CommandDispatcher;
 import com.mojang.logging.LogUtils;
 import net.minecraft.client.Minecraft;
@@ -42,6 +43,7 @@ public class Geminichad {
 
         // Register our mod's ForgeConfigSpec so that Forge can create and load the config file for us
         ModLoadingContext.get().registerConfig(ModConfig.Type.COMMON, Config.SPEC);
+        ModLoadingContext.get().registerConfig(ModConfig.Type.CLIENT, GeminichadConfig.SPEC);
     }
 
     private void commonSetup(final FMLCommonSetupEvent event) {

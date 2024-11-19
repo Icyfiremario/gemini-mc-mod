@@ -1,5 +1,6 @@
 package com.gmail.icyfiremario797.geminichad.common.command;
 
+import com.gmail.icyfiremario797.geminichad.api.chad.ChadHandler;
 import com.mojang.brigadier.Command;
 import com.mojang.brigadier.CommandDispatcher;
 import com.mojang.brigadier.context.CommandContext;
@@ -7,6 +8,8 @@ import net.minecraft.commands.CommandSourceStack;
 import net.minecraft.commands.Commands;
 import net.minecraft.network.chat.Component;
 import net.minecraft.world.entity.player.Player;
+
+import java.util.Objects;
 
 public class ResetChad {
 
@@ -16,8 +19,26 @@ public class ResetChad {
 
     public static int execute(CommandContext<CommandSourceStack> command) {
         if (command.getSource().getEntity() instanceof Player player) {
-            player.sendSystemMessage(Component.literal("AI was reset"));
+            try {
+                int success = ChadHandler.resetChad();
+
+                if (success != Command.SINGLE_SUCCESS) {
+                    player.sendSystemMessage(Component.literal("AI failed to reset!"));
+                    return 0;
+                }
+
+                player.sendSystemMessage(Component.literal("AI was reset."));
+
+            } catch (Exception e) {
+                if (Objects.equals(e.toString(), "java.net.ConnectException")) {
+                    player.sendSystemMessage(Component.literal("Server not found!"));
+                }
+                else {
+                    player.sendSystemMessage(Component.literal(e.toString()));
+                }
+            }
         }
+
         return Command.SINGLE_SUCCESS;
     }
 }

@@ -1,6 +1,7 @@
 package com.gmail.icyfiremario797.geminichad.common.command;
 
 import com.gmail.icyfiremario797.geminichad.api.chad.ChadHandler;
+import com.gmail.icyfiremario797.geminichad.api.chad.PlayerMessage;
 import com.mojang.brigadier.Command;
 import com.mojang.brigadier.CommandDispatcher;
 import com.mojang.brigadier.arguments.StringArgumentType;
@@ -19,8 +20,12 @@ public class TellChad {
     private static int execute(CommandSourceStack command, String msg) {
         if (command.getEntity() instanceof Player player) {
             try {
+                PlayerMessage pMessage = new PlayerMessage();
+                pMessage.setuName(player.getScoreboardName());
+
                 String response = ChadHandler.sendMessage(msg);
-                player.sendSystemMessage(Component.literal(String.format("User: %s", msg)));
+
+                player.sendSystemMessage(Component.literal(String.format("%s: %s", pMessage.getuName(), msg)));
                 player.sendSystemMessage(Component.literal(String.format("Chad: %s", response)));
             } catch (Exception e) {
                 if (Objects.equals(e.toString(), "java.net.ConnectException")) {

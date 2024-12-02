@@ -1,5 +1,7 @@
 package com.gmail.icyfiremario797.geminichad;
 
+import com.gmail.icyfiremario797.geminichad.api.chad.ChadHandler;
+import com.gmail.icyfiremario797.geminichad.api.chad.PlayerMessage;
 import com.gmail.icyfiremario797.geminichad.common.command.ResetChad;
 import com.gmail.icyfiremario797.geminichad.common.command.TellChad;
 import com.gmail.icyfiremario797.geminichad.config.GeminichadConfig;
@@ -24,6 +26,8 @@ import net.minecraftforge.fml.event.lifecycle.FMLCommonSetupEvent;
 import net.minecraftforge.fml.javafmlmod.FMLJavaModLoadingContext;
 import net.minecraftforge.registries.ForgeRegistries;
 import org.slf4j.Logger;
+
+import java.io.IOException;
 
 // The value here should match an entry in the META-INF/mods.toml file
 @Mod(Geminichad.MODID)
@@ -78,7 +82,7 @@ public class Geminichad {
     public static class ClientModEvents {
 
         @SubscribeEvent
-        public static void onClientSetup(FMLClientSetupEvent event) {
+        public static void onClientSetup(FMLClientSetupEvent event) throws IOException, InterruptedException {
             // Some client setup code
             LOGGER.info("HELLO FROM CLIENT SETUP");
             LOGGER.info("MINECRAFT NAME >> {}", Minecraft.getInstance().getUser().getName());

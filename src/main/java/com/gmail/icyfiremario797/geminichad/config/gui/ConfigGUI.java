@@ -18,9 +18,14 @@ public class ConfigGUI {
 
         ConfigEntryBuilder entryBuilder = builder.entryBuilder();
 
+        general.addEntry(entryBuilder.startBooleanToggle(Component.literal("Send screenshot"), GeminichadConfig.SEND_SCREENSHOT.get())
+                .setDefaultValue(false)
+                .setSaveConsumer(newValue -> GeminichadConfig.SEND_SCREENSHOT.set(newValue))
+                .build());
+
         general.addEntry(entryBuilder.startStrField(Component.literal("Chad Server URL"), GeminichadConfig.CHAD_SERVER_URL.get())
                 .setDefaultValue("https://gemini-mc-server.onrender.com/")
-                .setSaveConsumer(newValue -> GeminichadConfig.CHAD_SERVER_URL.set(newValue))
+                .setSaveConsumer(GeminichadConfig.CHAD_SERVER_URL::set)
                 .build());
 
         builder.setSavingRunnable(GeminichadConfig.SPEC::save);

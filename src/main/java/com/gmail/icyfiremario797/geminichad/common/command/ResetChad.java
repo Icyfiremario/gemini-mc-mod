@@ -1,6 +1,7 @@
 package com.gmail.icyfiremario797.geminichad.common.command;
 
 import com.gmail.icyfiremario797.geminichad.api.chad.ChadHandler;
+import com.gmail.icyfiremario797.geminichad.api.chad.PlayerMessage;
 import com.mojang.brigadier.Command;
 import com.mojang.brigadier.CommandDispatcher;
 import com.mojang.brigadier.context.CommandContext;
@@ -20,7 +21,13 @@ public class ResetChad {
     public static int execute(CommandContext<CommandSourceStack> command) {
         if (command.getSource().getEntity() instanceof Player player) {
             try {
-                int success = ChadHandler.resetChad();
+                PlayerMessage playerMessage = new PlayerMessage();
+
+                playerMessage.setPlayerName(player.getScoreboardName());
+                playerMessage.setPlayerMessage("");
+                playerMessage.setReset(true);
+
+                int success = ChadHandler.resetChad(playerMessage);
 
                 if (success != Command.SINGLE_SUCCESS) {
                     player.sendSystemMessage(Component.literal("AI failed to reset!"));

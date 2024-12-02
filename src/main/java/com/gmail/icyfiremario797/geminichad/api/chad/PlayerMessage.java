@@ -1,28 +1,28 @@
 package com.gmail.icyfiremario797.geminichad.api.chad;
 
 public class PlayerMessage {
-    private String uName;
-    private String msg;
+    private String PlayerName;
+    private String PlayerMessage;
     private boolean reset;
 
-    public void setuName(String uName) {
-        this.uName = uName;
+    public void setPlayerName(String playerName) {
+        this.PlayerName = playerName;
     }
 
-    public void setMsg(String msg) {
-        this.msg = msg;
+    public void setPlayerMessage(String playerMessage) {
+        this.PlayerMessage = playerMessage;
     }
 
     public void setReset(boolean reset) {
         this.reset = reset;
     }
 
-    public String getuName() {
-        return uName;
+    public String getPlayerName() {
+        return PlayerName;
     }
 
-    public String getMsg() {
-        return msg;
+    public String getPlayerMessage() {
+        return PlayerMessage;
     }
 
     public boolean getReset() {

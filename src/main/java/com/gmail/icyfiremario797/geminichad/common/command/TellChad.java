@@ -21,12 +21,18 @@ public class TellChad {
         if (command.getEntity() instanceof Player player) {
             try {
                 PlayerMessage pMessage = new PlayerMessage();
-                pMessage.setuName(player.getScoreboardName());
+                pMessage.setPlayerName(player.getScoreboardName());
+                pMessage.setPlayerMessage(msg);
 
-                String response = ChadHandler.sendMessage(msg);
+                String response;
 
-                player.sendSystemMessage(Component.literal(String.format("%s: %s", pMessage.getuName(), msg)));
+
+                response = ChadHandler.sendMessage(pMessage);
+
+
+                player.sendSystemMessage(Component.literal(String.format("%s: %s", pMessage.getPlayerName(), msg)));
                 player.sendSystemMessage(Component.literal(String.format("Chad: %s", response)));
+
             } catch (Exception e) {
                 if (Objects.equals(e.toString(), "java.net.ConnectException")) {
                     player.sendSystemMessage(Component.literal("Server not found!"));

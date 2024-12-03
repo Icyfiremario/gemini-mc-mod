@@ -7,7 +7,7 @@ public final class GeminichadConfig {
     public static final ForgeConfigSpec SPEC;
 
     public static final ForgeConfigSpec.ConfigValue<String> CHAD_SERVER_URL;
-    public static ForgeConfigSpec.BooleanValue SEND_SCREENSHOT;
+    public static final ForgeConfigSpec.BooleanValue SEND_SCREENSHOT;
 
     static {
         BUILDER.push("Gemini Chad Client Config");

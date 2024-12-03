@@ -1,7 +1,5 @@
 package com.gmail.icyfiremario797.geminichad;
 
-import com.gmail.icyfiremario797.geminichad.api.chad.ChadHandler;
-import com.gmail.icyfiremario797.geminichad.api.chad.PlayerMessage;
 import com.gmail.icyfiremario797.geminichad.common.command.ResetChad;
 import com.gmail.icyfiremario797.geminichad.common.command.TellChad;
 import com.gmail.icyfiremario797.geminichad.config.GeminichadConfig;

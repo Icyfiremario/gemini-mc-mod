@@ -78,10 +78,11 @@ public class ChadHandler {
     public static int resetChad(PlayerMessage pMessage) throws IOException, InterruptedException {
         String formattedMessage = gson.toJson(pMessage);
         System.out.println(formattedMessage);
+
         HttpRequest request = HttpRequest.newBuilder()
                 .uri(URI.create(String.format("%s/reset", ServerURL)))
                 .header("Content-Type", "application/json")
-                .GET()
+                .POST(HttpRequest.BodyPublishers.ofString(formattedMessage))
                 .build();
 
         HttpResponse<String> response = client.send(request, HttpResponse.BodyHandlers.ofString());
@@ -93,6 +94,5 @@ public class ChadHandler {
         }
 
         return Command.SINGLE_SUCCESS;
-
     }
 }

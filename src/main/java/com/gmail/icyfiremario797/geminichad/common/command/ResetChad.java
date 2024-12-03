@@ -24,7 +24,6 @@ public class ResetChad {
                 PlayerMessage playerMessage = new PlayerMessage();
 
                 playerMessage.setPlayerName(player.getScoreboardName());
-                playerMessage.setPlayerMessage("");
                 playerMessage.setReset(true);
 
                 int success = ChadHandler.resetChad(playerMessage);

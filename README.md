@@ -2,7 +2,8 @@
 
 ## About
 
-Adds two commands to interact with a flask web server connected to the Google Gemini API
+Adds two commands to interact with a flask web server connected to the Google Gemini API.
+Instancing is based on player names so every player gets their own personal Chad. In the future I plan on updating this to use the world for instancing so players can share a Chad on their server.
 
 ### Commands
 

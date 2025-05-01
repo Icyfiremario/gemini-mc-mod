@@ -1,7 +1,9 @@
 package com.gmail.icyfiremario797.geminichad;
 
+import com.gmail.icyfiremario797.geminichad.api.threading.CommandScheduler;
 import com.gmail.icyfiremario797.geminichad.common.command.ResetChad;
 import com.gmail.icyfiremario797.geminichad.common.command.TellChad;
+import com.gmail.icyfiremario797.geminichad.common.command.TestCommand;
 import com.gmail.icyfiremario797.geminichad.config.GeminichadConfig;
 import com.gmail.icyfiremario797.geminichad.config.gui.ConfigGUI;
 import com.mojang.brigadier.CommandDispatcher;
@@ -13,6 +15,7 @@ import net.minecraftforge.api.distmarker.Dist;
 import net.minecraftforge.client.ConfigScreenHandler;
 import net.minecraftforge.client.event.RegisterClientCommandsEvent;
 import net.minecraftforge.common.MinecraftForge;
+import net.minecraftforge.event.TickEvent;
 import net.minecraftforge.event.server.ServerStartingEvent;
 import net.minecraftforge.eventbus.api.IEventBus;
 import net.minecraftforge.eventbus.api.SubscribeEvent;
@@ -35,6 +38,7 @@ public class Geminichad {
     public static final String MODID = "geminichad";
     // Directly reference a slf4j logger
     private static final Logger LOGGER = LogUtils.getLogger();
+    public static final CommandScheduler commandScheduler = new CommandScheduler();
 
     public Geminichad() {
         IEventBus modEventBus = FMLJavaModLoadingContext.get().getModEventBus();
@@ -92,6 +96,14 @@ public class Geminichad {
 
             TellChad.register(dispatcher);
             ResetChad.register(dispatcher);
+            TestCommand.register(dispatcher);
+        }
+
+        @SubscribeEvent
+        public static void onClientTick(TickEvent.ClientTickEvent event) {
+            if (event.phase == TickEvent.ClientTickEvent.Phase.END) {
+                commandScheduler.RunCommands();
+            }
         }
     }
 }

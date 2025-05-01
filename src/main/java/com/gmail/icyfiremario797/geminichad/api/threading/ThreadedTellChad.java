@@ -6,7 +6,6 @@ import com.mojang.logging.LogUtils;
 import net.minecraft.network.chat.Component;
 import net.minecraft.world.entity.player.Player;
 
-import java.io.IOException;
 import java.util.Objects;
 
 public class ThreadedTellChad extends ThreadedCommand {

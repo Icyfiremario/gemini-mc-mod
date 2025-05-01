@@ -3,7 +3,6 @@ package com.gmail.icyfiremario797.geminichad;
 import com.gmail.icyfiremario797.geminichad.api.threading.CommandScheduler;
 import com.gmail.icyfiremario797.geminichad.common.command.ResetChad;
 import com.gmail.icyfiremario797.geminichad.common.command.TellChad;
-import com.gmail.icyfiremario797.geminichad.common.command.TestCommand;
 import com.gmail.icyfiremario797.geminichad.config.GeminichadConfig;
 import com.gmail.icyfiremario797.geminichad.config.gui.ConfigGUI;
 import com.mojang.brigadier.CommandDispatcher;
@@ -96,7 +95,6 @@ public class Geminichad {
 
             TellChad.register(dispatcher);
             ResetChad.register(dispatcher);
-            TestCommand.register(dispatcher);
         }
 
         @SubscribeEvent

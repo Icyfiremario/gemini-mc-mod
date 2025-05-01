@@ -10,7 +10,6 @@ import net.minecraft.commands.Commands;
 import net.minecraft.world.entity.player.Player;
 
 public class TellChad {
-    //private static final ThreadedTellChad tCommand = new ThreadedTellChad();
     public static void register(CommandDispatcher<CommandSourceStack> dispatcher) {
         dispatcher.register(Commands.literal("tellchad").then(Commands.argument("message", StringArgumentType.greedyString()).executes(commandContext -> run(commandContext.getSource(), StringArgumentType.getString(commandContext, "message")))));
     }

@@ -21,6 +21,11 @@ public class ThreadedReset extends ThreadedCommand {
 
             int success = ChadHandler.resetChad(playerMessage);
 
+            if (success == -1) {
+                player.sendSystemMessage(Component.literal(String.format("%s instance not found on server. Try talking with chad first.", playerMessage.getPlayerName())));
+                return;
+            }
+
             if (success != Command.SINGLE_SUCCESS) {
                 player.sendSystemMessage(Component.literal("AI failed to reset!"));
                 return;

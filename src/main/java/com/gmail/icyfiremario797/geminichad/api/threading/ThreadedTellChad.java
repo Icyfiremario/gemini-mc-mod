@@ -21,8 +21,6 @@ public class ThreadedTellChad extends ThreadedCommand {
 
             String response;
 
-            LogUtils.getLogger().info("Attempting to send threaded message");
-
             response = ChadHandler.sendMessage(pMessage);
 
             player.sendSystemMessage(Component.literal(String.format("%s: %s", pMessage.getPlayerName(), message)));

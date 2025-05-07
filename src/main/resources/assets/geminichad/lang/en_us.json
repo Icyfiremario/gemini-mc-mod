@@ -1,3 +1,6 @@
 {
-
+  "commands.geminichad.common.servernotfound": "Server not found!",
+  "commands.geminichad.reset.success": "The AI was reset.",
+  "commands.geminichad.reset.failure": "The AI failed to reset",
+  "commands.geminichad.reset.playernotfound": "%s instance not found on server. Try talking with chad first."
 }

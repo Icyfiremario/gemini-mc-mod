@@ -61,3 +61,10 @@ mandatory = true
 versionRange = "${minecraft_version_range}"
 ordering = "NONE"
 side = "BOTH"
+
+[[dependencies."geminichad"]]
+modId = "cloth_config"
+mandatory = true
+versionRange = "17.0.144"
+ordering = "NONE"
+side = "CLIENT"

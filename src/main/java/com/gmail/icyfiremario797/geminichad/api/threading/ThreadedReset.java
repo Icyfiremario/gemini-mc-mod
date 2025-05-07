@@ -4,12 +4,12 @@ import com.gmail.icyfiremario797.geminichad.api.chad.ChadHandler;
 import com.gmail.icyfiremario797.geminichad.api.chad.PlayerMessage;
 import com.mojang.brigadier.Command;
 import net.minecraft.network.chat.Component;
-import net.minecraft.world.entity.player.Player;
+import net.minecraft.client.player.LocalPlayer;
 
 import java.util.Objects;
 
 public class ThreadedReset extends ThreadedCommand {
-    private Player player;
+    private LocalPlayer player;
 
     @Override
     public void run() {
@@ -22,28 +22,28 @@ public class ThreadedReset extends ThreadedCommand {
             int success = ChadHandler.resetChad(playerMessage);
 
             if (success == -1) {
-                player.sendSystemMessage(Component.literal(String.format("%s instance not found on server. Try talking with chad first.", playerMessage.getPlayerName())));
+                player.displayClientMessage(Component.translatable("commands.geminichad.reset.playernotfound", player.getScoreboardName()), false);
                 return;
             }
 
             if (success != Command.SINGLE_SUCCESS) {
-                player.sendSystemMessage(Component.literal("AI failed to reset!"));
+                player.displayClientMessage(Component.translatable("commands.geminichad.reset.failure"), false);
                 return;
             }
 
-            player.sendSystemMessage(Component.literal("AI was reset."));
+            player.displayClientMessage(Component.translatable("commands.geminichad.reset.success"), false);
 
         } catch (Exception e) {
             if (Objects.equals(e.toString(), "java.net.ConnectException")) {
-                player.sendSystemMessage(Component.literal("Server not found!"));
+                player.displayClientMessage(Component.translatable("commands.geminichad.common.servernotfound"), false);
             }
             else {
-                player.sendSystemMessage(Component.literal(e.toString()));
+                player.displayClientMessage(Component.literal(e.toString()), false);
             }
         }
     }
 
-    public void setPlayer(Player player) {
+    public void setPlayer(LocalPlayer player) {
         this.player = player;
     }
 }

@@ -18,35 +18,13 @@ public class ChadHandler {
     private static final String ServerURL = GeminichadConfig.CHAD_SERVER_URL.get();
     private static final Gson gson = new Gson();
 
-    @Deprecated
-    public static String sendMessage(String message) throws IOException, InterruptedException {
-
-        String formattedMessage = String.format("{\"message\": \"%s\"}", message);
-
-        HttpRequest request = HttpRequest.newBuilder()
-                .uri(URI.create(String.format("%s/chat", ServerURL)))
-                .header("Content-Type", "application/json")
-                .POST(HttpRequest.BodyPublishers.ofString(formattedMessage))
-                .build();
-
-        HttpResponse<String> response = client.send(request, HttpResponse.BodyHandlers.ofString());
-
-
-        ChadResponse chadResponse = gson.fromJson(response.body(), ChadResponse.class);
-
-        System.out.println(chadResponse.getResponse());
-
-        return chadResponse.getResponse();
-    }
-
-    
     public static String sendMessage(PlayerMessage pMessage) throws IOException, InterruptedException {
         String formattedMessage = gson.toJson(pMessage);
         LogUtils.getLogger().info(formattedMessage);
-        LogUtils.getLogger().info(String.format("Server: %s", ServerURL));
+        LogUtils.getLogger().info(String.format("Server: %s", GeminichadConfig.CHAD_SERVER_URL.get()));
 
         HttpRequest request = HttpRequest.newBuilder()
-               .uri(URI.create(String.format("%s/chat", ServerURL)))
+               .uri(URI.create(String.format("%s/chat", GeminichadConfig.CHAD_SERVER_URL.get())))
                .header("Content-Type", "application/json")
                .POST(HttpRequest.BodyPublishers.ofString(formattedMessage))
                .build();
@@ -58,33 +36,13 @@ public class ChadHandler {
         return chadResponse.getResponse();
     }
 
-    @Deprecated
-    public static int resetChad() throws IOException, InterruptedException {
-        HttpRequest request = HttpRequest.newBuilder()
-                .uri(URI.create(String.format("%s/reset", ServerURL)))
-                .header("Content-Type", "application/json")
-                .GET()
-                .build();
-
-        HttpResponse<String> response = client.send(request, HttpResponse.BodyHandlers.ofString());
-
-        ChadResponse chadResponse = gson.fromJson(response.body(), ChadResponse.class);
-
-        if (!chadResponse.getReset()) {
-            LogUtils.getLogger().error(chadResponse.getResponse());
-            return 0;
-        }
-
-        return Command.SINGLE_SUCCESS;
-    }
-
     public static int resetChad(PlayerMessage pMessage) throws IOException, InterruptedException {
         String formattedMessage = gson.toJson(pMessage);
         LogUtils.getLogger().info(formattedMessage);
-        LogUtils.getLogger().info(String.format("Server: %s", ServerURL));
+        LogUtils.getLogger().info(String.format("Server: %s", GeminichadConfig.CHAD_SERVER_URL.get()));
 
         HttpRequest request = HttpRequest.newBuilder()
-                .uri(URI.create(String.format("%s/reset", ServerURL)))
+                .uri(URI.create(String.format("%s/reset", GeminichadConfig.CHAD_SERVER_URL.get())))
                 .header("Content-Type", "application/json")
                 .POST(HttpRequest.BodyPublishers.ofString(formattedMessage))
                 .build();

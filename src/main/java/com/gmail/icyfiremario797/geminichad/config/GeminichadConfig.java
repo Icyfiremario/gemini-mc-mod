@@ -17,5 +17,4 @@ public final class GeminichadConfig {
         SPEC = BUILDER.build();
     }
 
-
 }

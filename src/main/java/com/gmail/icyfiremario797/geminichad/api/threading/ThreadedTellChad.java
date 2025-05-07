@@ -2,7 +2,6 @@ package com.gmail.icyfiremario797.geminichad.api.threading;
 
 import com.gmail.icyfiremario797.geminichad.api.chad.ChadHandler;
 import com.gmail.icyfiremario797.geminichad.api.chad.PlayerMessage;
-import com.mojang.logging.LogUtils;
 import net.minecraft.network.chat.Component;
 import net.minecraft.world.entity.player.Player;
 
@@ -27,7 +26,7 @@ public class ThreadedTellChad extends ThreadedCommand {
             player.sendSystemMessage(Component.literal(String.format("Chad: %s", response)));
         } catch (Exception e) {
             if (Objects.equals(e.toString(), "java.net.ConnectException")) {
-                player.sendSystemMessage(Component.literal("Server not found!"));
+                player.sendSystemMessage(Component.translatable("commands.geminichad.common.servernotfound"));
             }
             else {
                 player.sendSystemMessage(Component.literal(e.toString()));

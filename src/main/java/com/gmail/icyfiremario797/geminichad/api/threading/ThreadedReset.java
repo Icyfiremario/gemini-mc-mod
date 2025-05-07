@@ -35,7 +35,7 @@ public class ThreadedReset extends ThreadedCommand {
 
         } catch (Exception e) {
             if (Objects.equals(e.toString(), "java.net.ConnectException")) {
-                player.sendSystemMessage(Component.literal("Server not found!"));
+                player.sendSystemMessage(Component.translatable("commands.geminichad.common.servernotfound"));
             }
             else {
                 player.sendSystemMessage(Component.literal(e.toString()));

@@ -10,6 +10,10 @@ Instancing is based on player names so every player gets their own personal Chad
 /tellchad \<message>. Sends message to Chad and prints response to the chat\
 /resetchad. Resets the chatbot effectively clearing its history
 
+### Installing
+Download the lastest version from the CurseForge website or the releases tab.
+The master branch will be used for the latest version and branches of past versions will be made as I update the mod.
+
 ### Host your own Chad
 https://github.com/Icyfiremario/gemini-mc-server
 

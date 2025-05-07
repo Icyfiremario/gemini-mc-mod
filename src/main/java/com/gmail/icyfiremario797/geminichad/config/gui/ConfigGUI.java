@@ -8,8 +8,7 @@ import net.minecraft.client.gui.screens.Screen;
 import net.minecraft.network.chat.Component;
 
 public class ConfigGUI {
-
-    public static Screen createConfigScreen (Screen parent) {
+    public static Screen CreateConfigScreen (Screen parent) {
         ConfigBuilder builder = ConfigBuilder.create()
                 .setParentScreen(parent)
                 .setTitle(Component.literal("ChadMC config"));
